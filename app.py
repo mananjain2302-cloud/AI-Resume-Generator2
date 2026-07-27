@@ -10,7 +10,6 @@ AI created resume based
 
 
 #============Agent code===============
-import IPython as ip
 import os
 import time
 import langchain
@@ -71,7 +70,8 @@ def prompt_generator(agent=agent):
   with open(file_name,'w') as f:
     f.write(response.content[-1]['text'])
   return "prompt file generated successfully,agent can read me"
-
+prompt_generator(model)
+       
 # tool 2:
 def Resume_maker_prompt():
   """this function just gives updated prompt
@@ -79,7 +79,7 @@ def Resume_maker_prompt():
   with open('prompt.py','r') as f:
     prompt=f.read()
   return prompt
-
+Resume_maker_prompt()
 # ====================Generate Resume=================
 prompt="""you are a helpful AI assistant
 with job resume maker,your task is to give,
@@ -101,7 +101,7 @@ if st.button("Generate Resume"):
     "content":query}]})
     code=response['messages'][-1].content[-1]['text']
 
-    st.markdown(code)
-
+    # st.markdown(code)
+    st.html(code,width="strech",unsafe_allow_javascript=True)
 
 
