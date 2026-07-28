@@ -28,7 +28,11 @@ from langchain_community.document_loaders import PyMuPDFLoader
 GOOGLE_API_KEY=st.sidebar.text_input("GOOGLE_API_KEY",type="password")
 GROQ_API_KEY=st.sidebar.text_input("GROQ_API_KEY",type="password")
 TAVILI_API_KEY=st.sidebar.text_input("TAVILI_API_KEY",type="password")
-
+if not(GOOGLE_API_KEY) and not (GROQ_API_KEY) and not (TAVILY_API_KEY):
+ st.sidebar.warning('PASS API KEYS')
+ st.stop()
+else:
+ st.success("API KEY LOADED")
 # =======================model building===================================
 model= ChatGoogleGenerativeAI(
     model='gemini-3.5-flash-lite',
