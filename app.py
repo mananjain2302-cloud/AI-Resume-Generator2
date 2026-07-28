@@ -121,8 +121,11 @@ user will upload data and return HTML format resume
 always use different styling"""
 
 final_prompt=prompt+Resume_maker_prompt()
-
-user_details="""user details:given below:give python developer resume
+user_info=st.text_input("enter your information")
+user_details="""user details:given below:
+resume info:{user_info}
+Photo: {uploaded_file}
+default if not given:give python developer resume
 """
 query=user_details+final_prompt
 
