@@ -112,6 +112,19 @@ user_details=f"""user details:given beow :resume info {USER_INFO} DEFAULT IF NOT
 query = final_prompt+user_details
 
 import base64
+OPTIONS+["delhi","noida","gurgaon","punjab"]
+
+LOCATION=st.sidebar.multislect('SELECT LOCATION: ',
+                              options=OPTIONS)
+JOB_PROFILE=["PYTHON DEVELOPER",'GEN AI',
+             'FULL STACK DEVELOPER','DATA ANALYST']
+
+PROFILE=st.sidebar.multislect('SELECT JOB ROLE:  ',
+                              options=)
+job_prompt = f"""Based on (PROFILE) jobs in {LOCATION}, I
+want latest job news in using tavily, try top 10 search or whatever available and give result like naukri theme design with job name, job desc, salary,
+apply link and output must be in HTML format no markdowns"""
+
 
 if st.button('generate resume'):
   with st.spinner("running agent"):
@@ -126,6 +139,11 @@ if st.button('generate resume'):
             b64_image = base64.b64encode(img_file.read()).decode()
         data_uri = f"data:image/jpeg;base64,{b64_image}"
         code = code.replace("PROFILE_IMAGE_PLACEHOLDER", data_uri)
+    st.html(code , width="stretch" , unsafe_allow_javascript=True)
+    st.divider()
+    response = agent.invoke({'messages': [{'role': 'user', 'content':job_prompt}]})
+
+    job_code = response['messages'][-1].content[-1]['text']
 
       
  
