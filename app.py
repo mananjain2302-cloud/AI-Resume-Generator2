@@ -27,7 +27,7 @@ from PIL import Image
 GOOGLE_API_KEY=st.sidebar.text_input("GOOGLE_API_KEY",type="password")
 GROQ_API_KEY=st.sidebar.text_input("GROQ_API_KEY",type="password")
 TAVILI_API_KEY=st.sidebar.text_input("TAVILI_API_KEY",type="password")
-if not(GOOGLE_API_KEY) and not (GROQ_API_KEY) and not (TAVILY_API_KEY):
+if not(GOOGLE_API_KEY) and not (GROQ_API_KEY) and not (TAVILI_API_KEY):
  st.sidebar.warning('PASS API KEYS')
  st.stop()
 else:
@@ -121,11 +121,15 @@ always use different styling"""
 
 final_prompt=prompt+Resume_maker_prompt()
 user_info=st.text_input("enter your information")
-user_details="""user details:given below:
-resume info:{user_info}
-Photo: {uploaded_file}
-default if not given:give python developer resume
-"""
+
+user_details = f"""user details: given below:
+Resume info: {user_info}
+Photo: {uploaded_file }
+Photo present in current directory with name as 
+uploaded_file, and once resume generated give
+download button in same html code.
+Default if not given: Give Python Developer Resume"""
+
 query=user_details+final_prompt
 
 if st.button("Generate Resume"):
