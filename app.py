@@ -84,6 +84,34 @@ def Resume_maker_prompt():
     prompt=f.read()
   return prompt
 Resume_maker_prompt()
+
+# ======================upload image============================
+uploaded_file = st.sidebar.file_uploader(
+"Choose an image file",
+type=["jpg", "jpeg", "png", "webp"]
+)
+if uploaded_file is not None:
+ try:
+  image = Image.open(uploaded_file)
+  
+  st.sidebar.image(image, caption="Uploaded Image", use_container_width=True)
+  
+  if image.mode in ("RGBA", "P"):
+   image image.convert("RGB")  
+  base_name = os.path.splitext (uploaded_file.name) [0]
+  save_path = f"{base_name}.jpg"
+  
+#3. Save the image to the current working directory
+  image.save(save_path, "JPEG")
+  st.sidebar.success(f" Image successfully saved as `{save_path}`!")
+ except Exception as e:
+  st.error(f"Error processing image: {e}")
+
+
+
+
+
+
 # ====================Generate Resume=================
 prompt="""you are a helpful AI assistant
 with job resume maker,your task is to give,
