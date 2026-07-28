@@ -96,7 +96,7 @@ if uploaded_file is not None:
   st.sidebar.image(image, caption="Uploaded Image", use_container_width=True)
   
   if image.mode in ("RGBA", "P"):
-   image image.convert("RGB")  
+   image=image.convert("RGB")  
   base_name = os.path.splitext (uploaded_file.name) [0]
   save_path = f"{base_name}.jpg"
   
