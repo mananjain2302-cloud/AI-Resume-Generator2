@@ -8,7 +8,6 @@ st.markdown("""## user can create or
 AI created resume based
  on high ATS score""")
 
-
 #============Agent code===============
 import os
 import time
