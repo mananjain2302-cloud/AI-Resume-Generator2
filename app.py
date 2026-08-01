@@ -112,7 +112,7 @@ user_details=f"""user details:given beow :resume info {USER_INFO} DEFAULT IF NOT
 query = final_prompt+user_details
 
 import base64
-OPTIONS+["delhi","noida","gurgaon","punjab"]
+OPTIONS=["delhi","noida","gurgaon","punjab"]
 
 LOCATION=st.sidebar.multislect('SELECT LOCATION: ',
                               options=OPTIONS)
